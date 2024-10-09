@@ -1,12 +1,16 @@
 
 # Firewall configuration
 firewall --enabled --service=mdns
+
 # Keyboard layouts
 keyboard 'us'
+
 # System language
 lang en_US.UTF-8
+
 # Network information
 network  --bootproto=dhcp --device=link --activate
+
 # Shutdown after installation
 shutdown
 
@@ -18,22 +22,31 @@ repo --name="EPEL" --baseurl=https://dl.fedoraproject.org/pub/epel/9/Everything/
 
 # Root password
 rootpw --iscrypted --lock locked
+
 # SELinux configuration
 selinux --enforcing
+
 # System services
 services --disabled="sshd" --enabled="NetworkManager,ModemManager"
+
 # System timezone
-timezone US/Eastern
+timezone Europe/Sofia
+
 # Use network installation
 #url --url="http://dl.rockylinux.org/pub/rocky/9/BaseOS/$basearch/os/"
+
 # X Window System configuration information
 xconfig  --startxonboot
+
 # System bootloader configuration
 bootloader --location=none
+
 # Clear the Master Boot Record
 zerombr
+
 # Partition clearing information
 clearpart --all
+
 # Disk partitioning information
 part / --fstype="ext4" --size=5120
 part / --size=8192
@@ -53,9 +66,11 @@ EOF
 
 # PackageKit likes to play games. Let's fix that.
 rm -f /var/lib/rpm/__db*
-releasever=$(rpm -q --qf '%{version}\n' --whatprovides system-release)
-basearch=$(uname -i)
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
+
+#releasever=$(rpm -q --qf '%{version}\n' --whatprovides system-release)
+#basearch=$(uname -i)
+#rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
+
 echo "Packages within this LiveCD"
 rpm -qa
 # Note that running rpm recreates the rpm db files which aren't needed or wanted
@@ -73,8 +88,7 @@ rm -f /var/lib/systemd/random-seed
 # convince readahead not to collect
 # FIXME: for systemd
 
-echo 'File created by kickstart. See systemd-update-done.service(8).' \
-    | tee /etc/.updated >/var/.updated
+echo 'File created by kickstart. See systemd-update-done.service(8).' | tee /etc/.updated >/var/.updated
 
 # Drop the rescue kernel and initramfs, we don't need them on the live media itself.
 # See bug 1317709

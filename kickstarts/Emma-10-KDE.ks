@@ -1,12 +1,16 @@
 
 # Firewall configuration
 firewall --enabled --service=mdns
+
 # Keyboard layouts
 keyboard 'us'
+
 # System language
 lang en_US.UTF-8
+
 # Network information
 network  --bootproto=dhcp --device=link --activate
+
 # Shutdown after installation
 shutdown
 
@@ -18,22 +22,28 @@ repo --name="EPEL" --baseurl=https://dl.fedoraproject.org/pub/epel/9/Everything/
 
 # Root password
 rootpw --iscrypted --lock locked
+
 # SELinux configuration
 selinux --enforcing
+
 # System services
 services --disabled="sshd" --enabled="NetworkManager,ModemManager"
+
 # System timezone
-timezone US/Eastern
-# Use network installation
-#url --url="http://dl.rockylinux.org/pub/rocky/9/BaseOS/$basearch/os/"
+timezone Europe/Sofia
+
 # X Window System configuration information
 xconfig  --startxonboot
+
 # System bootloader configuration
 bootloader --location=none
+
 # Clear the Master Boot Record
 zerombr
+
 # Partition clearing information
 clearpart --all
+
 # Disk partitioning information
 part / --fstype="ext4" --size=5120
 part / --size=9000
@@ -41,6 +51,7 @@ part / --size=9000
 %post
 systemctl enable livesys.service
 systemctl enable livesys-late.service
+
 # Enable tmpfs for /tmp - this is a good idea
 systemctl enable tmp.mount
 
@@ -53,11 +64,10 @@ EOF
 
 # PackageKit likes to play games. Let's fix that.
 rm -f /var/lib/rpm/__db*
-releasever=$(rpm -q --qf '%{version}\n' --whatprovides system-release)
-basearch=$(uname -i)
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
+
 echo "Packages within this LiveCD"
 rpm -qa
+
 # Note that running rpm recreates the rpm db files which aren't needed or wanted
 rm -f /var/lib/rpm/__db*
 
@@ -73,8 +83,7 @@ rm -f /var/lib/systemd/random-seed
 # convince readahead not to collect
 # FIXME: for systemd
 
-echo 'File created by kickstart. See systemd-update-done.service(8).' \
-    | tee /etc/.updated >/var/.updated
+echo 'File created by kickstart. See systemd-update-done.service(8).' | tee /etc/.updated >/var/.updated
 
 # Drop the rescue kernel and initramfs, we don't need them on the live media itself.
 # See bug 1317709
@@ -108,19 +117,23 @@ fi
 sed -i 's/^livesys_session=.*/livesys_session="kde"/' /etc/sysconfig/livesys
 
 # set default GTK+ theme for root (see #683855, #689070, #808062)
-cat > /root/.gtkrc-2.0 << EOF
-include "/usr/share/themes/Adwaita/gtk-2.0/gtkrc"
-include "/etc/gtk-2.0/gtkrc"
-gtk-theme-name="Adwaita"
-EOF
-mkdir -p /root/.config/gtk-3.0
-cat > /root/.config/gtk-3.0/settings.ini << EOF
-[Settings]
-gtk-theme-name = Adwaita
-EOF
+#cat > /root/.gtkrc-2.0 << EOF
+#include "/usr/share/themes/Adwaita/gtk-2.0/gtkrc"
+#include "/etc/gtk-2.0/gtkrc"
+#gtk-theme-name="Adwaita"
+#EOF
 
-rm -f /usr/share/wallpapers/Fedora
-ln -s rocky-abstract-2 /usr/share/wallpapers/Fedora
+#mkdir -p /root/.config/gtk-3.0
+#cat > /root/.config/gtk-3.0/settings.ini << EOF
+#[Settings]
+#gtk-theme-name = Adwaita
+#EOF
+
+wget https://upload.wikimedia.org/wikipedia/commons/0/00/SSC_Napoli_2024_%28deep_blue_navy%29.svg -O /home/logo.svg
+wget https://themunichguide.de/wp-content/uploads/2020/01/neuschwanstein-castle-in-winter-1.jpg -O /home/castle.jpg
+
+#rm -f /usr/share/wallpapers/Fedora
+#ln -s rocky-abstract-2 /usr/share/wallpapers/Fedora
 
 systemctl enable --force sddm.service
 dnf config-manager --set-enabled crb
