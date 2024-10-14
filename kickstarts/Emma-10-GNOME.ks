@@ -18,6 +18,7 @@ repo --name="BaseOS" --baseurl=https://repo.almalinux.org/almalinux/9.4/BaseOS/x
 repo --name="AppStream" --baseurl=https://repo.almalinux.org/almalinux/9.4/AppStream/x86_64/os/ --cost=200
 repo --name="CRB" --baseurl=https://repo.almalinux.org/almalinux/9.4/CRB/x86_64/os/ --cost=200
 repo --name="Extras" --baseurl=https://repo.almalinux.org/almalinux/9.4/extras/x86_64/os/ --cost=200
+repo --name="EPEL" --baseurl=https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/ --cost=200
 
 # Root password
 rootpw --iscrypted --lock locked
@@ -157,12 +158,7 @@ initscripts
 kernel
 kernel-modules
 kernel-modules-extra
-libreoffice-calc
-libreoffice-emailmerge
-libreoffice-graphicfilter
-libreoffice-impress
-libreoffice-writer
-#livesys-scripts
+livesys-scripts
 memtest86+
 shim-*64
 syslinux

@@ -129,19 +129,16 @@ sed -i 's/^livesys_session=.*/livesys_session="kde"/' /etc/sysconfig/livesys
 #gtk-theme-name = Adwaita
 #EOF
 
-wget https://upload.wikimedia.org/wikipedia/commons/0/00/SSC_Napoli_2024_%28deep_blue_navy%29.svg -O /home/logo.svg
-wget https://themunichguide.de/wp-content/uploads/2020/01/neuschwanstein-castle-in-winter-1.jpg -O /home/castle.jpg
-
 #rm -f /usr/share/wallpapers/Fedora
 #ln -s rocky-abstract-2 /usr/share/wallpapers/Fedora
 
 systemctl enable --force sddm.service
 dnf config-manager --set-enabled crb
 
-cat > /etc/sddm.conf.d/theme.conf <<THEMEEOF
-[Theme]
-Current=breeze
-THEMEEOF
+#cat > /etc/sddm.conf.d/theme.conf <<THEMEEOF
+#[Theme]
+#Current=breeze
+#THEMEEOF
 
 %end
 
@@ -185,11 +182,6 @@ initscripts
 kernel
 kernel-modules
 kernel-modules-extra
-libreoffice-calc
-libreoffice-emailmerge
-libreoffice-graphicfilter
-libreoffice-impress
-libreoffice-writer
 livesys-scripts
 mariadb-connector-c
 mariadb-embedded
