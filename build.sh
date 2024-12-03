@@ -8,8 +8,8 @@ configpath="${buildroot}/kickstarts"
 logfile="${buildroot}/build-$(date +%Y%m%d%H%M).log"
 cache_dir="/var/cache/live"
 product="EmmaLinux"
-release="10"
-upstream_release="1.1"
+release="9.4"
+upstream_release="$(date +%d-%m-%Y)" 
 
 usage() {
   cat << EOF
@@ -48,17 +48,15 @@ fi
 case "$1" in
   -g|--gnome)
     # GNOME ENV
-    kscfg=("${configpath}/Emma-${release}-GNOME.ks")
-    #kscfg=("${configpath}/sos-${release}-live-gnome.cfg")
-    fslabel=("${product}-${release}.${upstream_release}-LiveGNOME")
-    banner=("Creating ${product}-${release}.${upstream_release} GNOME live image")
+    kscfg=("${configpath}/${release}/EmmaLinux-GNOME.ks")
+    fslabel=("${product}-${release}-LiveGNOME")
+    banner=("Creating ${product} version ${release} build ${upstream_release} GNOME live image")
     ;;
   -k|--kde)
     # KDE ENV
-    kscfg=("${configpath}/Emma-${release}-KDE.ks")
-    #kscfg=("${configpath}/sos-${release}-live-gnome.cfg")
-    fslabel=("${product}-${release}.${upstream_release}-LiveKDE")
-    banner=("Creating ${product}-${release}.${upstream_release} KDE live image")
+    kscfg=("${configpath}/${release}/EmmaLinux-KDE.ks")
+    fslabel=("${product}-${release}-${upstream_release}-LiveKDE")
+    banner=("Creating  ${product} version ${release} build ${upstream_release} KDE live image")
     ;;
   -c|--cinnamon)
     # Cinnamon ENV
