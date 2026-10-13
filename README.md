@@ -15,3 +15,13 @@
 -g, --gnome     Build GNOME LiveCD
 -c, --cinnamon  Build Cinnammon LiveCD
 ```
+
+```
+sudo livemedia-creator \
+  --ks=emmalinux-live-gnome.ks \
+  --make-iso \
+  --no-virt \
+  --iso-name=EmmaLinux-9-Live-x86_64.iso \
+  --project="EmmaLinux Live OS" \
+  --releasever=9
+```
