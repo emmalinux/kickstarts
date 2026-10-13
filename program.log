@@ -1,0 +1,57 @@
+2026-10-13 12:38:19,113 INFO: Running... losetup --find --show /mnt/c/Users/ivanovx/Desktop/kickstarts/iso_out/lmc-disk-0muqkxyo.img
+2026-10-13 12:38:19,127 INFO: /dev/loop1
+2026-10-13 12:38:19,128 DEBUG: Return code: 0
+2026-10-13 12:38:19,130 INFO: Running... udevadm settle --timeout 300
+2026-10-13 12:38:19,183 DEBUG: Return code: 0
+2026-10-13 12:38:19,184 INFO: Running... losetup -j /mnt/c/Users/ivanovx/Desktop/kickstarts/iso_out/lmc-disk-0muqkxyo.img
+2026-10-13 12:38:19,190 INFO: /dev/loop1: [0070]:18858823439926227 (/mnt/c/Users/ivanovx/Desktop/kickstarts/iso_out/lmc-disk-0muqkxyo.img)
+2026-10-13 12:38:19,191 DEBUG: Return code: 0
+2026-10-13 12:38:19,192 INFO: Running... mkfs.ext4 -L Anaconda -b 4096 -m 0 /dev/loop1
+2026-10-13 12:38:25,754 INFO: mke2fs 1.47.3 (8-Jul-2025)
+2026-10-13 12:38:25,756 INFO: Creating filesystem with 3145728 4k blocks and 787968 inodes
+2026-10-13 12:38:25,759 INFO: Filesystem UUID: 829aa0a7-7eb7-4a22-bd07-2a25442ca020
+2026-10-13 12:38:25,761 INFO: Superblock backups stored on blocks:
+2026-10-13 12:38:25,765 INFO: 32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208
+2026-10-13 12:38:25,768 INFO: 
+2026-10-13 12:38:25,772 INFO: Allocating group tables:  0/96     done
+2026-10-13 12:38:25,775 INFO: Writing inode tables:  0/96     done
+2026-10-13 12:38:25,776 INFO: Creating journal (16384 blocks): done
+2026-10-13 12:38:25,777 INFO: Writing superblocks and filesystem accounting information:  0/96     done
+2026-10-13 12:38:25,779 INFO: 
+2026-10-13 12:38:25,782 DEBUG: Return code: 0
+2026-10-13 12:38:25,792 INFO: Running... mount /dev/loop1 /var/tmp/lorax.imgutils.8enu6jzp
+2026-10-13 12:38:26,096 DEBUG: Return code: 0
+2026-10-13 12:38:26,097 INFO: Running... df /var/tmp/lorax.imgutils.8enu6jzp
+2026-10-13 12:38:26,112 INFO: Filesystem     1K-blocks  Used Available Use% Mounted on
+2026-10-13 12:38:26,115 INFO: /dev/loop1      12278536  2072  12260080   1% /var/tmp/lorax.imgutils.8enu6jzp
+2026-10-13 12:38:26,116 DEBUG: Return code: 0
+2026-10-13 12:38:26,120 INFO: Running... umount /var/tmp/lorax.imgutils.8enu6jzp
+2026-10-13 12:38:26,136 DEBUG: Return code: 0
+2026-10-13 12:38:26,137 INFO: Running... losetup --detach /dev/loop1
+2026-10-13 12:38:26,143 DEBUG: Return code: 0
+2026-10-13 12:38:26,145 INFO: Running... sync
+2026-10-13 12:38:26,182 DEBUG: Return code: 0
+2026-10-13 12:38:26,184 INFO: Running... mount -o loop /mnt/c/Users/ivanovx/Desktop/kickstarts/iso_out/lmc-disk-0muqkxyo.img /mnt/sysimage/
+2026-10-13 12:38:26,359 DEBUG: Return code: 0
+2026-10-13 12:38:26,366 INFO: Running... unshare --pid --kill-child --mount --propagation unchanged anaconda --kickstart /mnt/c/Users/ivanovx/Desktop/kickstarts/emmalinux-live-gnome.ks --cmdline --dirinstall --remotelog 127.0.0.1:47995
+2026-10-13 12:56:08,935 INFO: Running... sync -f /mnt/sysimage/
+2026-10-13 12:56:10,699 DEBUG: Return code: 0
+2026-10-13 12:56:10,700 INFO: Running... setfiles -e /proc -e /sys /etc/selinux/targeted/contexts/files/file_contexts /
+2026-10-13 12:56:17,562 DEBUG: Return code: 0
+2026-10-13 12:56:17,563 INFO: Running... du -B 1 /mnt/c/Users/ivanovx/Desktop/kickstarts/iso_out/lmc-disk-0muqkxyo.img
+2026-10-13 12:56:17,573 INFO: 12886999040	/mnt/c/Users/ivanovx/Desktop/kickstarts/iso_out/lmc-disk-0muqkxyo.img
+2026-10-13 12:56:17,575 DEBUG: Return code: 0
+2026-10-13 12:56:17,576 INFO: Running... fstrim -v /mnt/sysimage/
+2026-10-13 12:56:17,584 INFO: fstrim: /mnt/sysimage/: the discard operation is not supported
+2026-10-13 12:56:17,585 DEBUG: Return code: 1
+2026-10-13 12:56:17,587 INFO: Running... du -B 1 /mnt/c/Users/ivanovx/Desktop/kickstarts/iso_out/lmc-disk-0muqkxyo.img
+2026-10-13 12:56:17,593 INFO: 12886999040	/mnt/c/Users/ivanovx/Desktop/kickstarts/iso_out/lmc-disk-0muqkxyo.img
+2026-10-13 12:56:17,593 DEBUG: Return code: 0
+2026-10-13 12:56:19,880 INFO: Running... umount /mnt/sysimage
+2026-10-13 12:56:21,109 DEBUG: Return code: 0
+2026-10-13 12:56:21,130 INFO: Running... du -B 1 /mnt/c/Users/ivanovx/Desktop/kickstarts/iso_out/lmc-disk-0muqkxyo.img
+2026-10-13 12:56:21,164 INFO: 12886999040	/mnt/c/Users/ivanovx/Desktop/kickstarts/iso_out/lmc-disk-0muqkxyo.img
+2026-10-13 12:56:21,168 DEBUG: Return code: 0
+2026-10-13 12:56:21,172 INFO: Running... fallocate --dig-holes -v /mnt/c/Users/ivanovx/Desktop/kickstarts/iso_out/lmc-disk-0muqkxyo.img
+2026-10-13 12:56:21,604 INFO: fallocate: fallocate failed: keep size mode is unsupported
+2026-10-13 12:56:21,606 DEBUG: Return code: 1
