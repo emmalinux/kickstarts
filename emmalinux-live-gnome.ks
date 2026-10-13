@@ -28,11 +28,12 @@ part / --size=12288 --fstype=ext4
 network --bootproto=dhcp --device=link --activate --onboot=on
 
 # ---- Repositories ----------------------------------------------------------
-url --url="https://repo.almalinux.org/almalinux/9/BaseOS/x86_64/os/"
-repo --name="AppStream" --baseurl="https://repo.almalinux.org/almalinux/9/AppStream/x86_64/os/"
-repo --name="CRB"       --baseurl="https://repo.almalinux.org/almalinux/9/CRB/x86_64/os/"
-repo --name="Extras"    --baseurl="https://repo.almalinux.org/almalinux/9/extras/x86_64/os/"
-repo --name="EPEL"      --baseurl="https://dl.fedoraproject.org/pub/epel/9/Everything/x86_64/"
+repo --name="BaseOS" --baseurl=https://repo.almalinux.org/almalinux/10/BaseOS/x86_64/os/
+repo --name="AppStream" --baseurl=https://repo.almalinux.org/almalinux/10/AppStream/x86_64/os/
+repo --name="CRB" --baseurl=https://repo.almalinux.org/almalinux/10/CRB/x86_64/os/
+repo --name="Extras" --baseurl=https://repo.almalinux.org/almalinux/10/extras/x86_64/os/
+repo --name="EPEL" --baseurl=https://dl.fedoraproject.org/pub/epel/10/Everything/x86_64/
+
 
 # Power off when the image build finishes
 shutdown
